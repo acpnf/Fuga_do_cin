@@ -6,7 +6,7 @@ Descrição do Projeto
 Este projeto é um jogo de labirinto onde o personagem principal, Seu Jailson, precisa coletar os crachás de três professores renomados (Juliano Iyoda, Ricardo Massa e Sergio Soares) e encontrar a saída do labirinto.
 O jogo desafia o jogador a navegar por um labirinto cheio de obstáculos, coletar todos os itens necessários e finalmente escapar do labirinto. Cada crachá coletado representa um marco no progresso do jogador.
 
-Participantes do Projeto (ordem alfabética)
+Participantes do Projeto
 
 André Polo Norte
 
