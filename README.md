@@ -1,5 +1,6 @@
 # Trabalho_IP
 LabiriCIN
+
 Descrição do Projeto
 
 Este projeto é um jogo de labirinto onde o personagem principal, Seu Jailson, precisa coletar os crachás de três professores renomados (Juliano Iyoda, Ricardo Massa e Sergio Soares) e encontrar a saída do labirinto.
