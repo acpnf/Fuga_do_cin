@@ -63,7 +63,7 @@ Carregam as telas inicial e final do jogo.
 Sem dúvidas, a má utilização GitHub foi o maior erro cometido pelo grupo. Em algumas ocasiões esquecemos ou utilizamos de forma errônea os uploads para o repositório, o que gerou bastante confusão. Tais problemas resultaram em códigos desconexos ou incompletos, mistura de informações e perda de arquivos. Ao analisarmos essa falha, aumentamos nossa frequência de comunicação para ficarmos cientes do que cada um produzia e começamos a nos atentar mais a tudo que era submetido no GitHub. 
 ### Qual foi o maior desafio enfrentado durante o projeto? Como vocês lidaram com ele?
 O gerenciamento do tempo e a falta de conhecimento prévio de alguns artifícios fundamentais para o desenvolvimento do projeto, com certeza, foram os maiores desafios enfrentados pelo grupo. O acúmulo de obrigações, como provas e outro trabalho, nos pressionou e limitou bastante o tempo disponível para a criação do jogo. Desse modo, tivemos que idealizar muito bem o que iríamos executar e dividir as obrigações entre os membros do projeto, de forma a agilizar toda a estrutaração do jogo.
-## Quais as lições aprendidas durante o projeto?
+### Quais as lições aprendidas durante o projeto?
 Os maiores aprendizados que iremos levar conosco após a realização desse projeto serão a importância do trabalho em equipe e da comunicação. Programar em conjunto foi um desafio novo e inspirador para toda a equipe, o qual nos fez aprender bastante meios de segmentar as tarefas, incrementar as formas de comunicação e auxiliar uns aos outros.
 
 ## Como Jogar:
