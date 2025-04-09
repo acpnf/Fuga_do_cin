@@ -2,13 +2,13 @@ import pygame
 import random
 from pyamaze import maze, COLOR
 
-# Configurações do jogo
+# Configurações do jogo (Em maiúsculo pois são variáveis constantes)
 LARGURA, ALTURA = 1200, 900
 LARGURA_LAB, LARGURA_PLACAR = 900, 300
 LINHAS, COLUNAS = 25, 25
 TAMANHO_CELULA = LARGURA_LAB // COLUNAS
 
-# Cores
+# Cores (Em maiúsculo pois são variáveis constantes)
 BRANCO = (255, 255, 255)
 PRETO = (0, 0, 0)
 AZUL = (0, 0, 255)
@@ -18,21 +18,19 @@ AMARELO = (255, 255, 0)
 ROXO = (128, 0, 128)
 CINZA = (200, 200, 200)
 CINZA_ESCURO = (150, 150, 150)
-CINZA_ESCURO2 = (100, 100, 100)  # Cor para saída bloqueada
+CINZA_ESCURO2 = (100, 100, 100)  
 
 
 class Jogador:
     def __init__(self):
-        # Tamanho aumentado do jogador
         self.largura = TAMANHO_CELULA + 20
         self.altura = TAMANHO_CELULA + 20
         
-        # Direção atual (0: direita, 1: esquerda)
-        self.direcao = 0  # Começa virado para a direita
+        self.direcao = 0  
         self.movendo = False
         
         try:
-            # Carrega imagens do jogador para esquerda e direita
+            # Carrega imagens do jogador para esquerda e direita para dar o efeito de corrida animada
             self.animacoes = {
                 0: [pygame.image.load(f'jogador_andando_direita_{i}.png').convert_alpha() for i in range(1, 4)],
                 1: [pygame.image.load(f'jogador_andando_esquerda_{i}.png').convert_alpha() for i in range(1, 4)]
@@ -54,7 +52,7 @@ class Jogador:
                     self.parado[direcao], (self.largura, self.altura))
                 
         except:
-            # Fallback caso as imagens não existam
+            # Para o caso de as imagens não existirem, uma alternativa a mais 
             self.parado = {
                 0: pygame.Surface((self.largura, self.altura)),
                 1: pygame.Surface((self.largura, self.altura))
@@ -72,7 +70,7 @@ class Jogador:
         self.contador_frames = 0
         self.velocidade_animacao = 5
 
-    def atualizar_direcao(self, dx):
+    def atualizar_direcao(self, dx): # Função Criada para atualizar a direção do player quando ele trocar a direção
         """Atualiza a direção apenas quando muda entre esquerda/direita"""
         if dx > 0:
             self.direcao = 0  # Direita
@@ -80,34 +78,33 @@ class Jogador:
             self.direcao = 1  # Esquerda
         # Para cima/baixo (dy), mantém a direção atual
 
-    def atualizar(self):
+    def atualizar(self): # Função criada para dar o movimento animado ao personagem
         if self.movendo:
             self.contador_frames += 1
             if self.contador_frames >= self.velocidade_animacao:
                 self.contador_frames = 0
                 self.frame_atual = (self.frame_atual + 1) % len(self.animacoes[self.direcao])
 
-    def desenhar(self, tela, x, y):
+    def desenhar(self, tela, x, y): #Função para desenhar o personagem 
         if self.movendo:
             tela.blit(self.animacoes[self.direcao][self.frame_atual], (x, y))
         else:
             tela.blit(self.parado[self.direcao], (x, y))
 
-def inicializar_jogo():
+def inicializar_jogo(): #Função criada para dar início ao programa 
     pygame.init()
     tela = pygame.display.set_mode((LARGURA, ALTURA))
-    pygame.display.set_caption("Jogo de Labirinto com Placar")
+    pygame.display.set_caption("A Fuga do CIn")
     fonte_titulo = pygame.font.SysFont('Arial', 28, bold=True)
     fonte_texto = pygame.font.SysFont('Arial', 24)
     return tela, fonte_titulo, fonte_texto
 
-def gerar_labirinto():
+def gerar_labirinto(): #Função criada para criar o labirinto junto com a biblioteca do pyamaze
     m = maze(LINHAS, COLUNAS)
     m.CreateMaze(loopPercent=10)
     return m
 
-def desenhar_labirinto(tela, labirinto):
-    # Cria uma superfície temporária com transparência
+def desenhar_labirinto(tela, labirinto): #Função criada para desenhar o labirinto
     paredes_surface = pygame.Surface((LARGURA_LAB, ALTURA), pygame.SRCALPHA)
     
     for i in range(1, COLUNAS + 1):
@@ -116,8 +113,7 @@ def desenhar_labirinto(tela, labirinto):
             x = (i - 1) * TAMANHO_CELULA
             y = (j - 1) * TAMANHO_CELULA
             
-            # Usa PRETO com alpha diretamente
-            cor_parede = (0, 0, 0, 180)  # Preto com 70% de opacidade
+            cor_parede = (0, 0, 0, 180)
             
             if not cell['N']:
                 pygame.draw.line(paredes_surface, cor_parede,
@@ -136,16 +132,14 @@ def desenhar_labirinto(tela, labirinto):
     
     tela.blit(paredes_surface, (0, 0))
 
-def carregar_animacao_cracha(tipo):
+def carregar_animacao_cracha(tipo): #Função Criada para os crachás ficarem girando no mapa
     animacao = []
-    for i in range(0, 4):  # 4 imagens para cada crach�
+    for i in range(0, 4):  
         try:
             img = pygame.image.load(f"sprite_{tipo}{i}.png").convert_alpha()
-            # Alterado para usar o mesmo tamanho do jogador
             img = pygame.transform.scale(img, (TAMANHO_CELULA + 10, TAMANHO_CELULA + 10))
             animacao.append(img)
-        except:
-            # Fallback: cria superf�cie colorida
+        except: # Caso em que as imagens não estão baixadas e evitam que o código dê erro 
             surf = pygame.Surface((TAMANHO_CELULA + 10, TAMANHO_CELULA + 10))
             cor = VERMELHO if tipo == "IYODA" else VERDE if tipo == "RICARDO"else AZUL
             surf.fill(cor)
@@ -154,16 +148,15 @@ def carregar_animacao_cracha(tipo):
     return animacao
 
 
-def gerar_chaves(labirinto):
+def gerar_chaves(labirinto): #Função criada para gerar aleatoriamente as chaves em pontos do labirinto
     chaves = []
     tipos = ["IYODA", "RICARDO", "SERGIO"]
     nomes = {"IYODA": "Iyoda", "RICARDO": "Ricardo", "SERGIO": "Sergio"}
     cores = {"IYODA": VERMELHO, "RICARDO": VERDE, "SERGIO": AZUL}
     
-    # Pr�-carrega as anima��es para cada tipo de crach�
-    animacoes = {tipo: carregar_animacao_cracha(tipo) for tipo in tipos}
+    animacoes = {tipo: carregar_animacao_cracha(tipo) for tipo in tipos} #Animações dos crachás
     
-    for tipo in tipos:
+    for tipo in tipos: #Laço de repetição utilizado para substituir as chaves pelas animações dos crachás, usada para os 3 crachás
         while True:
             x = random.randint(2, COLUNAS - 1)
             y = random.randint(2, LINHAS - 1)
@@ -178,37 +171,37 @@ def gerar_chaves(labirinto):
                     'imagens': animacoes[tipo],
                     'frame_atual': 0,
                     'contador_frames': 0,
-                    'velocidade_animacao': 8  # Valor fixo para todos os crach�s
+                    'velocidade_animacao': 8 
                 })
                 break
     return chaves
 
-def desenhar_chaves(tela, chaves):
+def desenhar_chaves(tela, chaves): #Função para desenhar os crachás no labirinto
     for chave in chaves:
         if not chave['coletada']:
-            # Atualiza anima��o
+            
             chave['contador_frames'] += 1
             if chave['contador_frames'] >= chave['velocidade_animacao']:
                 chave['contador_frames'] = 0
                 chave['frame_atual'] = (chave['frame_atual'] + 1) % 4  # Loop entre 0-3
             
-            # Posi��o central (ajustada para o novo tamanho)
+            # Centralização dos crachás no local 
             centro_x = (chave['x'] - 1) * TAMANHO_CELULA + (TAMANHO_CELULA - (TAMANHO_CELULA + 10)) // 2
             centro_y = (chave['y'] - 1) * TAMANHO_CELULA + (TAMANHO_CELULA - (TAMANHO_CELULA + 10)) // 2
             
-            # Desenha imagem atual
+            # Desenho do crachá 
             img_atual = chave['imagens'][chave['frame_atual']]
             tela.blit(img_atual, (centro_x, centro_y))
 
 
-def gerar_saida(labirinto, chaves):
+def gerar_saida(labirinto, chaves): # Função para gerar uma saída aleatória no mapa 
     while True:
         coluna = random.randint(2, COLUNAS - 1)
         linha = random.randint(2, LINHAS - 1)
         if (coluna, linha) != (1, 1) and all((coluna, linha) != (chave['x'], chave['y']) for chave in chaves):
             return (linha, coluna)
     
-def carregar_imagens_porta():
+def carregar_imagens_porta(): #Função para carregar as imagens da porta que será a saída do labirinto
     try:
         porta_fechada = pygame.image.load('porta fechada.png').convert_alpha()
         porta_aberta = pygame.image.load('porta aberta.png').convert_alpha()
@@ -216,7 +209,7 @@ def carregar_imagens_porta():
         porta_fechada = pygame.transform.scale(porta_fechada, (TAMANHO_CELULA, TAMANHO_CELULA))
         porta_aberta = pygame.transform.scale(porta_aberta, (TAMANHO_CELULA - 5, TAMANHO_CELULA - 5))
     except:
-        # Fallback simples - retângulos coloridos
+        # Para o caso de não estarem salvas as imagens do jogo 
         porta_fechada = pygame.Surface((TAMANHO_CELULA - 5, TAMANHO_CELULA - 5))
         porta_fechada.fill(CINZA_ESCURO2)
         porta_aberta = pygame.Surface((TAMANHO_CELULA - 5, TAMANHO_CELULA - 5))
@@ -225,7 +218,7 @@ def carregar_imagens_porta():
 
     return porta_fechada, porta_aberta
 
-def desenhar_saida(tela, saida, chaves, porta_fechada, porta_aberta):
+def desenhar_saida(tela, saida, chaves, porta_fechada, porta_aberta): # Função Criada para desenhar a saída 
     if saida:
         # Verifica se todas as chaves foram coletadas
         todas_coletadas = all(chave['coletada'] for chave in chaves)
@@ -234,13 +227,14 @@ def desenhar_saida(tela, saida, chaves, porta_fechada, porta_aberta):
         x_pos = (saida[1] - 1) * TAMANHO_CELULA + 2
         y_pos = (saida[0] - 1) * TAMANHO_CELULA + 2
         
-        # Desenha a imagem apropriada
+        # Desenha a imagem de forma centralizada
         if todas_coletadas:
             tela.blit(porta_aberta, (x_pos + 1, y_pos))
         else:
             tela.blit(porta_fechada, (x_pos - 2, y_pos - 2))
 
-def desenhar_placar(tela, fonte_titulo, fonte_texto, chaves):
+def desenhar_placar(tela, fonte_titulo, fonte_texto, chaves): #Função criada para desenhar o placar interativo, para indicar os objetos coletados 
+    
     # Fundo do placar
     pygame.draw.rect(tela, CINZA, (LARGURA_LAB, 0, LARGURA_PLACAR, ALTURA))
     
@@ -254,17 +248,18 @@ def desenhar_placar(tela, fonte_titulo, fonte_texto, chaves):
     # Status de cada chave
     y_offset = 80
     for chave in chaves:
-        # Mostra a primeira imagem da animação (mantido pequeno para o painel)
-        img_pequena = pygame.transform.scale(chave['imagens'][0], (120, 120))  # Aumentei um pouco
+        # Mostra a primeira imagem da animação
+        img_pequena = pygame.transform.scale(chave['imagens'][0], (120, 120))
         tela.blit(img_pequena, (LARGURA - LARGURA_PLACAR + 10, y_offset))
         
+        # Mostra a situação atual da chave (se foi coletada ou não)
         status = "1/1" if chave['coletada'] else "0/1"
         texto = fonte_titulo.render(f"{chave['nome']}: {status}", True, PRETO)
-        tela.blit(texto, (LARGURA - LARGURA_PLACAR + 120, y_offset + 60))  # Ajuste posição
-        y_offset += 140  # Aumentei o espaçamento
+        tela.blit(texto, (LARGURA - LARGURA_PLACAR + 120, y_offset + 60))
+        y_offset += 140  
     
     
-    # Divisória
+    # Divisória entre as instruções e a situação dos crachás
     pygame.draw.line(tela, CINZA_ESCURO, (LARGURA_LAB, 500), (LARGURA, 500), 2)
     
     # Instruções do Jogo
@@ -282,7 +277,7 @@ def desenhar_placar(tela, fonte_titulo, fonte_texto, chaves):
         texto = fonte_texto.render(linha, True, PRETO)
         tela.blit(texto, (LARGURA_LAB + 20, 550 + i * 30))
 
-def verificar_coleta_chave(jogador_x, jogador_y, chaves):
+def verificar_coleta_chave(jogador_x, jogador_y, chaves): #Função pra verificar se a chave foi coletada 
     for chave in chaves:
         if not chave['coletada'] and jogador_x == chave['x'] and jogador_y == chave['y']:
             chave['coletada'] = True
@@ -290,13 +285,13 @@ def verificar_coleta_chave(jogador_x, jogador_y, chaves):
     return False
 
     
-def verificar_vitoria(jogador_x, jogador_y, saida, chaves):
+def verificar_vitoria(jogador_x, jogador_y, saida, chaves): #Função para definir se o jogador coletou as 3 chaves e entrou na saída
     if jogador_x == saida[1] and jogador_y == saida[0] and all(chave['coletada'] for chave in chaves):
         print("Parabéns! Você escapou do labirinto!")
         return True
     return False
 
-def processar_eventos(jogador_x, jogador_y, labirinto, chaves, saida, chegou_destino, jogador):
+def processar_eventos(jogador_x, jogador_y, labirinto, chaves, saida, chegou_destino, jogador): #Função para processar os eventos que acontecem no jogo com o personagem 
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             return False, jogador_x, jogador_y, True
@@ -330,7 +325,7 @@ def processar_eventos(jogador_x, jogador_y, labirinto, chaves, saida, chegou_des
                 jogador_x, jogador_y = novo_x, novo_y
                 verificar_coleta_chave(jogador_x, jogador_y, chaves)
                 chegou_destino = False
-                # Atualiza a direção do jogador apenas se for movimento horizontal
+                # Atualiza a direção do jogador apenas se for movimento horizontal (para que a animação aconteça)
                 if dx != 0:
                     jogador.atualizar_direcao(dx)
     
@@ -343,11 +338,11 @@ def processar_eventos(jogador_x, jogador_y, labirinto, chaves, saida, chegou_des
 
 
 def mostrar_tela_inicial(tela):
-    # Carregar imagem
+    # Tentativa de carregar a imagem da tela inicial
     try:
-        imagem = pygame.image.load('tela inicial.png').convert()  # Altere para o nome do seu arquivo
-        imagem = pygame.transform.scale(imagem, (LARGURA, ALTURA))  # Redimensiona para o tamanho da tela
-    except:
+        imagem = pygame.image.load('tela inicial.png').convert()  
+        imagem = pygame.transform.scale(imagem, (LARGURA, ALTURA)) 
+    except: #Caso no qual a imagem não é encontrada
         imagem = pygame.Surface((LARGURA, ALTURA))
         imagem.fill(ROXO)  # Cor de fallback
 
@@ -355,7 +350,7 @@ def mostrar_tela_inicial(tela):
     pygame.display.flip()
 
     esperando = True
-    while esperando:
+    while esperando: # Laço de repetição criado para inicialização do jogo
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 return False
@@ -363,7 +358,7 @@ def mostrar_tela_inicial(tela):
                 esperando = False
     return True
 
-def mostrar_tela_final(tela, clock):
+def mostrar_tela_final(tela, clock): #Definição da tela final, após o jogador sair do Labirinto 
     
     try:
         imagem = pygame.image.load('tela final.png').convert()
@@ -371,13 +366,13 @@ def mostrar_tela_final(tela, clock):
         tela.blit(imagem, (0, 0))
         pygame.display.flip()
     except:
-        # Fallback: fundo colorido com mensagem
+        # Caso para que a imagem da tela final não seja carregada
         tela.fill(VERDE)
         fonte_titulo = pygame.font.SysFont('Arial', 48, bold=True)
         titulo = fonte_titulo.render("Parabéns! Você venceu!", True, BRANCO)
         tela.blit(titulo, (LARGURA//2 - titulo.get_width()//2, ALTURA//4))
     
-    # Áreas clicáveis (ajuste esses valores)
+    # Áreas clicáveis (Jogar Novamente e Sair)
     botao_jogar = pygame.Rect(148, 533, 917, 150)
     botao_sair = pygame.Rect(368, 722, 459, 137)
     
@@ -399,7 +394,8 @@ def mostrar_tela_final(tela, clock):
         clock.tick(60)
 
 
-def main():
+def main(): #Função Princial, para juntar todas as outras funções 
+    
     # Inicializa o jogo apenas uma vez
     tela, fonte_titulo, fonte_texto = inicializar_jogo()
     porta_fechada, porta_aberta = carregar_imagens_porta()
@@ -420,7 +416,7 @@ def main():
         jogador_x, jogador_y = 1, 1
         rodando = True
         
-        # Variáveis para movimento suave
+        # Variáveis para movimento suavizado do  jogador 
         jogador_real_x = (jogador_x - 1) * TAMANHO_CELULA + (TAMANHO_CELULA - (TAMANHO_CELULA + 20)) // 2
         jogador_real_y = (jogador_y - 1) * TAMANHO_CELULA + (TAMANHO_CELULA - (TAMANHO_CELULA + 20)) // 2
         velocidade_movimento = 3
@@ -439,7 +435,7 @@ def main():
         
         # Loop do jogo
         while rodando:
-            # Processar eventos primeiro
+            # Processar eventos do jogo
             rodando, novo_x, novo_y, chegou_destino = processar_eventos(
                 jogador_x, jogador_y, labirinto, chaves, saida, chegou_destino, jogador)
             
@@ -478,7 +474,7 @@ def main():
             # Atualiza animação do jogador
             jogador.atualizar()
             
-            # Desenha tudo
+            # Desenha o labirinto, os coletáveis e o placar do jogo 
             tela.blit(fundo, (0, 0))
             desenhar_labirinto(tela, labirinto)
             desenhar_chaves(tela, chaves)
