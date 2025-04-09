@@ -1,8 +1,8 @@
-## A Fuga Do CIn
+## A Fuga do CIn
 
 ## Descrição do Projeto:
 Este projeto é um jogo de labirinto onde o personagem principal, Seu Jailson, precisa coletar os crachás de três professores renomados (Juliano Iyoda, Ricardo Massa e Sergio Soares) e encontrar a saída do labirinto.
-O jogo desafia o jogador a navegar por um labirinto cheio de obstáculos, coletar todos os itens necessários e finalmente escapar do labirinto. Cada crachá coletado representa um marco no progresso do jogador.
+O jogo desafia o jogador a navegar por um labirinto e coletar todos os itens necessários para finalmente escapar do labirinto. Cada crachá coletado representa um marco no progresso do jogador. Além disso, tudo no jogo é gerado de forma randômica: as paredes do labirinto, os crachás e a posição da porta. Tudo isso contribui para que cada jogatina seja uma experiência única e emocionante!
 
 ## Participantes do Projeto:
 - André Polo Norte
@@ -13,14 +13,50 @@ O jogo desafia o jogador a navegar por um labirinto cheio de obstáculos, coleta
 - Theo Egito
 
 ## Organização e Desenvolvimento de Jogo:
-Para o desenvolver o jogo de forma mais efeciente e mais rapidamente, dividimos a equipe. Assim, alguns trabalharam mais na parte gráfica, enquanto outros ficaram responsáveis pelos códigos. Além disso, a equipe se reuniu tanto presencialmente, como remotamente para alinhas as ideias e melhorar a estruturação do jogo, sendo assim todo mundo participou contribuindo ativamente e auxiliando os colegas.
+Dividimos a equipe para o desenvolver o jogo de forma mais eficiente e mais rapidamente. Assim, alguns trabalharam mais na parte gráfica, enquanto outros ficaram responsáveis pelos códigos. Além disso, a equipe se reuniu tanto presencialmente, como remotamente para alinhas as ideias e melhorar a estruturação do jogo, sendo assim todo mundo participou contribuindo ativamente e auxiliando os colegas.
+
+## Divisão de tarefas:
+| **Equipe** | **Tarefas** |
+| :---: |:--:|
+| André Polo Norte | Desenvolvimento das interfaces inicial e final |
+| Ikelvys Kauê  | Criação das animações dos coletáveis e do player |
+| João Pedro Lima | Desenvolvimento da classe do jogador e das funções em geral |
+| Pablo Nunes | Criação das animações do ambiente e do player |
+| Roni Victor | Desenvolvimento da classe do jogador e das funções em geral |
+| Theo Marcos | Desenvolvimento da classe do jogador e das funções em geral, Modularização do código |
+
 
 ## Ferramentas Utilizadas:
-- Python;
-- Pygame;
-- Pyamaze;
-- Piskel;
-- GitHub.
+- Pygame (Biblioteca focada no desenvolvimento de jogos 2D que nos forneceu os recursos necessários) ;
+- Pyamaze (Biblioteca utilizada para criar o labirinto;
+- Piskel (Site voltado para a criação de artes em pixels);
+- VSCode (Ambiente usado para a programação em Python);
+- IA's (Auxiliaram em dúvidas e transformaram fotos em pixel art)
+- GitHub (Repositório que permitia o acesso ao código a todos membros do grupo).
+
+## Arquitetura do Projeto
+### funcoes_labirinto.py
+As funções criam um labirinto aleatório, desenham a porta e determinam o posicionamento da saída, as cores das paredes e o fundo do jogo.
+### funcoes_coletaveis.py
+Essas funções geram os crachás, criam o placar que apresenta o status do jogo e verifica tanto a coleta dos crachás, como a fuga do CIn.
+### funcoes_personagem.py
+Tais funções carregam as animações de Seu Jailson, atualiza as direções do personagem, verifica as movimentações e processa os eventos do jogo.
+### funcoes_telas_jogo.py
+Carregam as telas inicial e final do jogo
+
+## Principais Objetivos do Projeto
+- Utilizar bibliotecas para criar um jogo funcional (Pygame e Pyamaze);
+- Aplicar tudo o que aprendemos durante o período no código do jogo;
+- Melhorar a colaboração em equipe dos integrantes do projeto.
+
+## Conceitos da Cadeira Utilizados no Projeto
+- Funções: Utilizadas para modularizar o jogo com intuito de dividir o código em partes independentes.
+- Classes: Gerar as animações do personagem principal.
+- Listas: Criação e denominação das chaves e definição das instruções do jogo
+- Dicionários: Denominação das chaves
+- Laços de Repetição: Geração das imagens e das animações, desenho do labirinto, criação e desenho das chaves, geração da saída, verificações da coleta de crachás e da vitória e processamento dos eventos.
+- Condicionais: Movimentação do personagem, geração e desenho do labirinto e das chaves, verificação da coleta dos crachás e da vitória, processamento de eventos, exibição das telas
+- Tuplas: Determinação de variáveis constantes, como as cores. 
 
 ## Desafios e Erros:
 A complexidade e a falta de conhecimento prévio das ferramentas dificultou muito o andamento do projeto, em muitos momentos precisamos recorrer a instrumentos de pesquisa para aprender a desenvolver alguma parte do jogo. Ademais, a organização dos códigos, o compartilhamento de informações, a comunicação e o GitHub foram problemas que mais afetaram o andamento do trabalho. Tais problemas geraram bastante confusão, resultando em códigos desconexos ou incompletos, mistura de informações e perda de arquivos. 
@@ -68,5 +104,7 @@ Animação baseada no prestigiado professor, Sérgio Soares!
 ### Tela Final
 ![tela final](https://github.com/user-attachments/assets/97453c90-080d-4d23-84ec-50a26dcc501d)
 
+## Captura de Tela
+![Screenshot 2025-04-09 102845](https://github.com/user-attachments/assets/abb0f059-ce3c-43fa-be26-04002bc857c0)
 
 
