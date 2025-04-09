@@ -31,3 +31,11 @@ A complexidade e a falta de conhecimento prévio das ferramentas dificultou muit
 - Encontre a saída após coletar todos os itens
 
 ## Imagens do Jogo:
+### Fundo
+![fundo2](https://github.com/user-attachments/assets/614b2404-13cc-4cca-9e9a-f19174706d30)
+### Seu Jailson ![jogador_andando_esquerda_3](https://github.com/user-attachments/assets/a421158d-2c14-4d82-a652-e35402a330e8)
+![jogador_andando_esquerda_2](https://github.com/user-attachments/assets/06419107-5e0d-4899-87b3-def27f1082da)
+![jogador_andando_esquerda_1](https://github.com/user-attachments/assets/ec8406f5-2db3-4eaa-ac4b-478bf479b5fe)
+![jogador_andando_direita_3](https://github.com/user-attachments/assets/8fbc50b9-6211-4bf9-8f7b-e7610f495061)
+![jogador_andando_direita_2](https://github.com/user-attachments/assets/630c869e-46e6-4fb3-b119-64804fc6a511)
+![jogador_andando_direita_1](https://github.com/user-attachments/assets/08fff7d2-14f1-4614-8630-f6715abb0421)
