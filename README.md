@@ -31,7 +31,6 @@ Dividimos a equipe para o desenvolver o jogo de forma mais eficiente e mais rapi
 - Pyamaze (Biblioteca utilizada para criar o labirinto);
 - Piskel (Site voltado para a criação de artes em pixels);
 - VSCode (Ambiente usado para a programação em Python);
-- IA's (Auxiliaram em dúvidas e transformaram fotos em pixel art);
 - GitHub (Repositório que permitia o acesso ao código a todos membros do grupo).
 
 ## Arquitetura do Projeto
