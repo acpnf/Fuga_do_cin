@@ -18,12 +18,12 @@ Dividimos a equipe para o desenvolver o jogo de forma mais eficiente e mais rapi
 ## Divisão de tarefas:
 | **Equipe** | **Tarefas** |
 | :---: |:--:|
-| André Polo Norte | Desenvolvimento das interfaces inicial e final |
-| Ikelvys Kauê  | Criação das animações dos coletáveis e do player |
-| João Pedro Lima | Desenvolvimento da classe do jogador e das funções em geral |
-| Pablo Nunes | Criação das animações do ambiente e do player |
-| Roni Victor | Desenvolvimento da classe do jogador e das funções em geral |
-| Theo Marcos | Desenvolvimento da classe do jogador e das funções em geral, Modularização do código |
+| André Polo Norte | Desenvolvimento das interfaces inicial e final, Modularização do código. |
+| Ikelvys Kauê  | Criação das animações e dos códigos dos coletáveis e do player. |
+| João Pedro Lima | Desenvolvimento da classe do jogador e das funções em geral. |
+| Pablo Nunes | Criação das animações e dos códigos dos coletáveis e do player. |
+| Roni Victor | Desenvolvimento da classe do jogador e das funções em geral. |
+| Theo Marcos | Desenvolvimento da classe do jogador e das funções em geral, Modularização do código. |
 
 
 ## Ferramentas Utilizadas:
